@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 const  user = new mongoose.Schema({
-   firstName: {
+    firstName: {
        type: String,
        maxLength: 20,
    },
-   lastName : {
+    lastName : {
        type: String,
        maxLength: 20,
    },

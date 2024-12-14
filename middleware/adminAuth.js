@@ -1,11 +1,11 @@
+const jwt = require("jsonwebtoken");
 const adminAuth = (req, res, next) => {
-    const token = "xyza";
-    const isAdminAuth = token === "xyz";
-    if(!isAdminAuth) {
-        res.status(401).send("unauthorized");
+    const SECRET = process.env.SECRET || 'alphaMale1';
+    const token = req.cookies.token;
+    if (!token) {
+        return res.status(401).send("No token provided");
     }
-    else {
-        next();
-    }
+    req.id  = jwt.verify(token, SECRET).id;
+    next();
 }
-module.exports = {adminAuth};
+module.exports = adminAuth;
